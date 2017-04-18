@@ -443,6 +443,7 @@
 <td style="text-align:left">PRI</td>
 <td style="text-align:left">NULL</td>
 <td style="text-align:left"></td>
+<td style="text-align:left">关联的数据库ID</td>
 </tr>
 <tr>
 <td style="text-align:left">PARAM_KEY</td>
@@ -451,6 +452,7 @@
 <td style="text-align:left">PRI</td>
 <td style="text-align:left">NULL</td>
 <td style="text-align:left"></td>
+<td style="text-align:left">参数Key</td>
 </tr>
 <tr>
 <td style="text-align:left">PARAM_VALUE</td>
@@ -458,9 +460,12 @@
 <td style="text-align:left">YES</td>
 <td style="text-align:left"></td>
 <td style="text-align:left">NULL</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">参数值</td>
 </tr>
 </tbody>
 </table>
+<p>该表存储在创建数据库时，使用WITH DBPROPERTIES (property_name=property_value, …)指定的参数。</p>
 <h4 id="DBS"><a href="#DBS" class="headerlink" title="DBS"></a>DBS</h4><table>
 <thead>
 <tr>
@@ -3167,6 +3172,7 @@
 <td style="text-align:left">PRI</td>
 <td style="text-align:left">NULL</td>
 <td style="text-align:left"></td>
+<td style="text-align:left">版本</td>
 </tr>
 <tr>
 <td style="text-align:left">SCHEMA_VERSION</td>
@@ -3175,6 +3181,7 @@
 <td style="text-align:left"></td>
 <td style="text-align:left">NULL</td>
 <td style="text-align:left"></td>
+<td style="text-align:left">Hive版本</td>
 </tr>
 <tr>
 <td style="text-align:left">VERSION_COMMENT</td>
@@ -3182,9 +3189,12 @@
 <td style="text-align:left">NO</td>
 <td style="text-align:left"></td>
 <td style="text-align:left">NULL</td>
+<td style="text-align:left"></td>
+<td style="text-align:left">版本说明</td>
 </tr>
 </tbody>
 </table>
+<p>该表虽然看起来很简单，但是很重要。如果这个表不存在的话，将无法启动hive。</p>
 
                 <hr>
                 

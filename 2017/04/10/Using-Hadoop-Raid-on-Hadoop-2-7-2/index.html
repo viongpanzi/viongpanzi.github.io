@@ -1,11 +1,100 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
+
+
+
   
-  <title>Using Hadoop Raid on Hadoop-2.7.2 | BIGrey</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="待解决
+
+
+<html class="theme-next muse use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="待解决
 在改写过程中遇到的问题：
 1. java.io.EOFException: Premature EOF: no length prefix available, block move is failed2. org.apache.hadoop.hdfs.server.datanode.ReplicaNotFoundException: Cannot append to a non-exis">
 <meta property="og:type" content="article">
@@ -21,233 +110,568 @@
 <meta name="twitter:description" content="待解决
 在改写过程中遇到的问题：
 1. java.io.EOFException: Premature EOF: no length prefix available, block move is failed2. org.apache.hadoop.hdfs.server.datanode.ReplicaNotFoundException: Cannot append to a non-exis">
-  
-    <link rel="alternate" href="/atom.xml" title="BIGrey" type="application/atom+xml">
-  
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://viongpanzi.github.io/2017/04/10/Using-Hadoop-Raid-on-Hadoop-2-7-2/"/>
+
+
+
+
+
+  <title>Using Hadoop Raid on Hadoop-2.7.2 | BIGrey</title>
   
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
 
-  <link rel="stylesheet" href="/css/styles.css">
-  
+
+
+
+
+
+
+
+
+
+
 
 </head>
 
-<body>
-  <nav class="navbar navbar-inverse">
-  <div class="container">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      
+<body itemscope itemtype="http://schema.org/WebPage" lang="">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">BIGrey</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
     </div>
+      
+        <p class="site-subtitle">BIGrey</p>
+      
+  </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="main-menu-navbar">
-      <ul class="nav navbar-nav">
-        
-          <li><a class=""
-                 href="/index.html">Home</a></li>
-        
-          <li><a class=""
-                 href="/archives/">Archives</a></li>
-        
-      </ul>
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
 
-      <!--
-      <ul class="nav navbar-nav navbar-right">
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
         
-          <li><a href="/atom.xml" title="RSS Feed"><i class="fa fa-rss"></i></a></li>
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
         
-      </ul>
-      -->
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
 </nav>
 
-  <div class="container">
-    <div class="blog-header">
-  <h1 class="blog-title">BIGrey</h1>
-  
-    <p class="lead blog-description">BIGrey</p>
-  
-</div>
-
-    <div class="row">
-        <div class="col-sm-8 blog-main">
-          <article id="post-Using-Hadoop-Raid-on-Hadoop-2-7-2" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <header class="article-header">
-    
-  
-    <h1 class="article-title" itemprop="name">
-      Using Hadoop Raid on Hadoop-2.7.2
-    </h1>
-  
 
 
-  </header>
+ </div>
+    </header>
 
-  <div class="article-meta">
-    <div class="article-datetime">
-  <a href="/2017/04/10/Using-Hadoop-Raid-on-Hadoop-2-7-2/" class="article-date"><time datetime="2017-04-10T07:00:53.000Z" itemprop="datePublished">2017-04-10</time></a>
-</div>
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
 
-    
+  <div id="posts" class="posts-expand">
     
 
-  </div>
-  <div class="article-inner">
+  
 
-    <div class="article-entry" itemprop="articleBody">
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://viongpanzi.github.io/2017/04/10/Using-Hadoop-Raid-on-Hadoop-2-7-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="BIGrey">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BIGrey">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Using Hadoop Raid on Hadoop-2.7.2</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Veröffentlicht am</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-10T15:00:53+08:00">
+                2017-04-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
       
         <p><strong>待解决</strong></p>
 <p>在改写过程中遇到的问题：</p>
 <h3 id="1-java-io-EOFException-Premature-EOF-no-length-prefix-available-block-move-is-failed"><a href="#1-java-io-EOFException-Premature-EOF-no-length-prefix-available-block-move-is-failed" class="headerlink" title="1. java.io.EOFException: Premature EOF: no length prefix available, block move is failed"></a>1. java.io.EOFException: Premature EOF: no length prefix available, block move is failed</h3><h3 id="2-org-apache-hadoop-hdfs-server-datanode-ReplicaNotFoundException-Cannot-append-to-a-non-existent-replica-BP-1378462942-127-0-0-1-1489817171429-blk-1073743438-2614-block-move-is-failed"><a href="#2-org-apache-hadoop-hdfs-server-datanode-ReplicaNotFoundException-Cannot-append-to-a-non-existent-replica-BP-1378462942-127-0-0-1-1489817171429-blk-1073743438-2614-block-move-is-failed" class="headerlink" title="2. org.apache.hadoop.hdfs.server.datanode.ReplicaNotFoundException: Cannot append to a non-existent replica BP-1378462942-127.0.0.1-1489817171429:blk_1073743438_2614, block move is failed"></a>2. org.apache.hadoop.hdfs.server.datanode.ReplicaNotFoundException: Cannot append to a non-existent replica BP-1378462942-127.0.0.1-1489817171429:blk_1073743438_2614, block move is failed</h3>
       
     </div>
-
     
-      
-
+    
     
 
-    <footer class="article-footer">
-      <a data-url="http://viongpanzi.github.io/2017/04/10/Using-Hadoop-Raid-on-Hadoop-2-7-2/" data-id="cjads7g6r0003vos65shghcak" class="article-share-link">
-        <i class="fa fa-share"></i> Share
-      </a>
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
       
       
 
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/04/Volatile-in-Java/" rel="next" title="Volatile in Java">
+                <i class="fa fa-chevron-left"></i> Volatile in Java
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/16/Hive-元数据mysql表说明/" rel="prev" title="Hive 元数据mysql表说明">
+                Hive 元数据mysql表说明 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
     </footer>
   </div>
   
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
     
-<ul id="article-nav" class="nav nav-pills nav-justified">
-  
-  <li role="presentation">
-    <a href="/2017/04/04/Volatile-in-Java/" id="article-nav-older" class="article-nav-link-wrap">
-      <i class="fa fa-chevron-left pull-left"></i>
-      <span class="article-nav-link-title">Volatile in Java</span>
-    </a>
-  </li>
-  
-  
-  <li role="presentation">
-    <a href="/2017/04/16/Hive-元数据mysql表说明/" id="article-nav-newer" class="article-nav-link-wrap">
-      <span class="article-nav-link-title">Hive 元数据mysql表说明</span>
-      <i class="fa fa-chevron-right pull-right"></i>
-    </a>
-  </li>
-  
-</ul>
-
-
-  
-</article>
-
-
+  </div>
 
 
         </div>
-        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+        
           
-  <div class="sidebar-module sidebar-module-inset">
-  <h4>About</h4>
-  <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
 
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="BIGrey" />
+          <p class="site-author-name" itemprop="name">BIGrey</p>
+           
+              <p class="site-description motion-element" itemprop="description">BIGrey 在 Github 上的个人博客</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">Artikel</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">Tags</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-java-io-EOFException-Premature-EOF-no-length-prefix-available-block-move-is-failed"><span class="nav-number">1.</span> <span class="nav-text">1. java.io.EOFException: Premature EOF: no length prefix available, block move is failed</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-org-apache-hadoop-hdfs-server-datanode-ReplicaNotFoundException-Cannot-append-to-a-non-existent-replica-BP-1378462942-127-0-0-1-1489817171429-blk-1073743438-2614-block-move-is-failed"><span class="nav-number">2.</span> <span class="nav-text">2. org.apache.hadoop.hdfs.server.datanode.ReplicaNotFoundException: Cannot append to a non-existent replica BP-1378462942-127.0.0.1-1489817171429:blk_1073743438_2614, block move is failed</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">BIGrey</span>
 </div>
 
 
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
   
 
 
   
-  <div class="sidebar-module">
-    <h4>Tags</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Hive/">Hive</a><span class="sidebar-module-list-count">1</span></li></ul>
-  </div>
 
 
 
-  
-  <div class="sidebar-module">
-    <h4>Tag Cloud</h4>
-    <p class="tagcloud">
-      <a href="/tags/Hive/" style="font-size: 10px;">Hive</a>
-    </p>
-  </div>
+
+	
 
 
-  
-  <div class="sidebar-module">
-    <h4>Archives</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/04/">April 2017</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/03/">March 2017</a><span class="sidebar-module-list-count">2</span></li></ul>
-  </div>
 
 
 
   
-  <div class="sidebar-module">
-    <h4>Recents</h4>
-    <ul class="sidebar-module-list">
-      
-        <li>
-          <a href="/2017/04/16/Hive-元数据mysql表说明/">Hive 元数据mysql表说明</a>
-        </li>
-      
-        <li>
-          <a href="/2017/04/10/Using-Hadoop-Raid-on-Hadoop-2-7-2/">Using Hadoop Raid on Hadoop-2.7.2</a>
-        </li>
-      
-        <li>
-          <a href="/2017/04/04/Volatile-in-Java/">Volatile in Java</a>
-        </li>
-      
-        <li>
-          <a href="/2017/03/14/Memo-of-Git/">Memo of Git</a>
-        </li>
-      
-        <li>
-          <a href="/2017/03/14/hello-world/">Hello World</a>
-        </li>
-      
-    </ul>
-  </div>
 
 
 
-        </div>
-    </div>
-  </div>
-  <footer class="blog-footer">
-  <div class="container">
-    <div id="footer-info" class="inner">
-      &copy; 2017 BIGrey<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
+
 
   
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
-
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
 
 
-<script src="/js/script.js"></script>
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 </body>
 </html>

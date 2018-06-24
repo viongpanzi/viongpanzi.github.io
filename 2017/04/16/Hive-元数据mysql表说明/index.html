@@ -1,183 +1,76 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-  <title>Hive 元数据mysql表说明 | BIGrey</title>
+<html lang=zh-Hans>
+  <head>
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="工作过程中需要对Hive的元数据进行操作，对元数据需要很熟悉，因此整理了一下元数据中用到的表，记录一下。现在先整理了一下MySQL中的每一个表的字段的含义如下：
-BUCKETING_COLS
-
-
-Field
-Type
-Null
-Key
-Default
-Extra
-Comment
-
-
-
-
-SD_ID
-bigint(20)
-NO
-PRI
-NULL
-
-
-
-BUCKET_COL_NAME
-varchar(">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Hive 元数据mysql表说明">
-<meta property="og:url" content="http://viongpanzi.github.io/2017/04/16/Hive-元数据mysql表说明/index.html">
-<meta property="og:site_name" content="BIGrey">
-<meta property="og:description" content="工作过程中需要对Hive的元数据进行操作，对元数据需要很熟悉，因此整理了一下元数据中用到的表，记录一下。现在先整理了一下MySQL中的每一个表的字段的含义如下：
-BUCKETING_COLS
-
-
-Field
-Type
-Null
-Key
-Default
-Extra
-Comment
-
-
-
-
-SD_ID
-bigint(20)
-NO
-PRI
-NULL
-
-
-
-BUCKET_COL_NAME
-varchar(">
-<meta property="og:updated_time" content="2017-04-16T14:00:43.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hive 元数据mysql表说明">
-<meta name="twitter:description" content="工作过程中需要对Hive的元数据进行操作，对元数据需要很熟悉，因此整理了一下元数据中用到的表，记录一下。现在先整理了一下MySQL中的每一个表的字段的含义如下：
-BUCKETING_COLS
-
-
-Field
-Type
-Null
-Key
-Default
-Extra
-Comment
-
-
-
-
-SD_ID
-bigint(20)
-NO
-PRI
-NULL
-
-
-
-BUCKET_COL_NAME
-varchar(">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="description" content="BIGrey 在 Github 上的个人博客">
+  <meta name="keywords" content="undefined">
   
-    <link rel="alternate" href="/atom.xml" title="BIGrey" type="application/atom+xml">
+    <link rel="icon" href="/favicon.ico">
   
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
-
-  <link rel="stylesheet" href="/css/styles.css">
-  
-
+    
+  <title>Hive 元数据mysql表说明 | BIGrey</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/lib/jquery.fancybox.min.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body>
-  <nav class="navbar navbar-inverse">
-  <div class="container">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-menu-navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
+  <header>
+  <div class="header-container">
+    <a class='logo' href="/">
+      <span>BIGrey</span>
+    </a>
+    <ul class="right-header">
       
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="main-menu-navbar">
-      <ul class="nav navbar-nav">
-        
-          <li><a class=""
-                 href="/index.html">Home</a></li>
-        
-          <li><a class=""
-                 href="/archives/">Archives</a></li>
-        
-      </ul>
-
-      <!--
-      <ul class="nav navbar-nav navbar-right">
-        
-          <li><a href="/atom.xml" title="RSS Feed"><i class="fa fa-rss"></i></a></li>
-        
-      </ul>
-      -->
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-
-  <div class="container">
-    <div class="blog-header">
-  <h1 class="blog-title">BIGrey</h1>
-  
-    <p class="lead blog-description">BIGrey</p>
-  
-</div>
-
-    <div class="row">
-        <div class="col-sm-8 blog-main">
-          <article id="post-Hive-元数据mysql表说明" class="article article-type-post" itemscope itemprop="blogPost">
-
-  <header class="article-header">
-    
-  
-    <h1 class="article-title" itemprop="name">
-      Hive 元数据mysql表说明
-    </h1>
-  
-
-
-  </header>
-
-  <div class="article-meta">
-    <div class="article-datetime">
-  <a href="/2017/04/16/Hive-元数据mysql表说明/" class="article-date"><time datetime="2017-04-16T07:17:39.000Z" itemprop="datePublished">2017-04-16</time></a>
-</div>
-
-    
-    
-
+        <li class="nav-item">
+          
+            <a href="/" class="item-link">首页</a>
+          
+        </li>
+      
+        <li class="nav-item">
+          
+            <a href="/about" class="item-link">关于</a>
+          
+        </li>
+      
+        <li class="nav-item">
+          
+            <a href="/archives" class="item-link">归档</a>
+          
+        </li>
+      
+        <li class="nav-item">
+          
+            <a href="/tags" class="item-link">标签</a>
+          
+        </li>
+      
+    </ul>
   </div>
-  <div class="article-inner">
+</header>
 
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>工作过程中需要对Hive的元数据进行操作，对元数据需要很熟悉，因此整理了一下元数据中用到的表，记录一下。现在先整理了一下MySQL中的每一个表的字段的含义如下：</p>
+  <main id='post'>
+  <div class="content">
+    <article>
+        <section class="content markdown-body">
+          <h1>Hive 元数据mysql表说明</h1>
+          <div class='post-meta'>
+            <i class="fa fa-calendar" aria-hidden="true"></i> <time>2017/04/16</time>
+            
+            
+              | 
+                  <i class="fa fa-tag" aria-hidden="true"></i>
+                
+               
+  <a href="/tags/#Hive" class='tag'>Hive</a>
+
+
+            
+          </div>
+          <p>工作过程中需要对Hive的元数据进行操作，对元数据需要很熟悉，因此整理了一下元数据中用到的表，记录一下。现在先整理了一下MySQL中的每一个表的字段的含义如下：</p>
 <h4 id="BUCKETING-COLS"><a href="#BUCKETING-COLS" class="headerlink" title="BUCKETING_COLS"></a>BUCKETING_COLS</h4><table>
 <thead>
 <tr>
@@ -3197,135 +3090,96 @@ varchar(">
 </table>
 <p>该表虽然看起来很简单，但是很重要。如果这个表不存在的话，将无法启动hive。</p>
 
-      
-    </div>
-
+        </section>
+    </article>
     
-      
-
+        
+  </div>
+  <aside>
     
-
-    <footer class="article-footer">
-      <a data-url="http://viongpanzi.github.io/2017/04/16/Hive-元数据mysql表说明/" data-id="cjit0tvlx0000pgfy2jfejjzh" class="article-share-link">
-        <i class="fa fa-share"></i> Share
-      </a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Hive/">Hive</a></li></ul>
-
-
-    </footer>
-  </div>
-  
-    
-<ul id="article-nav" class="nav nav-pills nav-justified">
-  
-  <li role="presentation">
-    <a href="/2017/04/10/Using-Hadoop-Raid-on-Hadoop-2-7-2/" id="article-nav-older" class="article-nav-link-wrap">
-      <i class="fa fa-chevron-left pull-left"></i>
-      <span class="article-nav-link-title">Using Hadoop Raid on Hadoop-2.7.2</span>
-    </a>
-  </li>
-  
-  
-</ul>
-
-
-  
-</article>
-
-
-
-
-        </div>
-        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
-          
-  <div class="sidebar-module sidebar-module-inset">
-  <h4>About</h4>
-  <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-
-</div>
-
-
-  
-
-
-  
-  <div class="sidebar-module">
-    <h4>Tags</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/tags/Hive/">Hive</a><span class="sidebar-module-list-count">1</span></li></ul>
-  </div>
-
-
-
-  
-  <div class="sidebar-module">
-    <h4>Tag Cloud</h4>
-    <p class="tagcloud">
-      <a href="/tags/Hive/" style="font-size: 10px;">Hive</a>
-    </p>
-  </div>
-
-
-  
-  <div class="sidebar-module">
-    <h4>Archives</h4>
-    <ul class="sidebar-module-list"><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/04/">April 2017</a><span class="sidebar-module-list-count">3</span></li><li class="sidebar-module-list-item"><a class="sidebar-module-list-link" href="/archives/2017/03/">March 2017</a><span class="sidebar-module-list-count">2</span></li></ul>
-  </div>
-
-
-
-  
-  <div class="sidebar-module">
-    <h4>Recents</h4>
-    <ul class="sidebar-module-list">
-      
-        <li>
-          <a href="/2017/04/16/Hive-元数据mysql表说明/">Hive 元数据mysql表说明</a>
-        </li>
-      
-        <li>
-          <a href="/2017/04/10/Using-Hadoop-Raid-on-Hadoop-2-7-2/">Using Hadoop Raid on Hadoop-2.7.2</a>
-        </li>
-      
-        <li>
-          <a href="/2017/04/04/Volatile-in-Java/">Volatile in Java</a>
-        </li>
-      
-        <li>
-          <a href="/2017/03/14/Memo-of-Git/">Memo of Git</a>
-        </li>
-      
-        <li>
-          <a href="/2017/03/14/hello-world/">Hello World</a>
-        </li>
-      
-    </ul>
-  </div>
-
-
-
+    <div class="toc-container">
+        <h1>目录</h1>
+        <div class="content">
+            <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#BUCKETING-COLS"><span class="toc-number">1.</span> <span class="toc-text">BUCKETING_COLS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CDS"><span class="toc-number">2.</span> <span class="toc-text">CDS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#COLUMNS-V2"><span class="toc-number">3.</span> <span class="toc-text">COLUMNS_V2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#COMPACTION-QUEUE"><span class="toc-number">4.</span> <span class="toc-text">COMPACTION_QUEUE</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#COMPLETED-TXN-COMPONENTS"><span class="toc-number">5.</span> <span class="toc-text">COMPLETED_TXN_COMPONENTS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DATABASE-PARAMS"><span class="toc-number">6.</span> <span class="toc-text">DATABASE_PARAMS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DBS"><span class="toc-number">7.</span> <span class="toc-text">DBS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DB-PRIVS"><span class="toc-number">8.</span> <span class="toc-text">DB_PRIVS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DELEGATION-TOKENS"><span class="toc-number">9.</span> <span class="toc-text">DELEGATION_TOKENS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#FUNCS"><span class="toc-number">10.</span> <span class="toc-text">FUNCS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#FUNC-RU"><span class="toc-number">11.</span> <span class="toc-text">FUNC_RU</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#GLOBAL-PRIVS"><span class="toc-number">12.</span> <span class="toc-text">GLOBAL_PRIVS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HIVE-LOCKS"><span class="toc-number">13.</span> <span class="toc-text">HIVE_LOCKS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IDXS"><span class="toc-number">14.</span> <span class="toc-text">IDXS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#INDEX-PARAMS"><span class="toc-number">15.</span> <span class="toc-text">INDEX_PARAMS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#MASTER-KEYS"><span class="toc-number">16.</span> <span class="toc-text">MASTER_KEYS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NEXT-COMPACTION-QUEUE-ID"><span class="toc-number">17.</span> <span class="toc-text">NEXT_COMPACTION_QUEUE_ID</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NEXT-LOCK-ID"><span class="toc-number">18.</span> <span class="toc-text">NEXT_LOCK_ID</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NEXT-TXN-ID"><span class="toc-number">19.</span> <span class="toc-text">NEXT_TXN_ID</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NOTIFICATION-LOG"><span class="toc-number">20.</span> <span class="toc-text">NOTIFICATION_LOG</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#NOTIFICATION-SEQUENCE"><span class="toc-number">21.</span> <span class="toc-text">NOTIFICATION_SEQUENCE</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PARTITIONS"><span class="toc-number">22.</span> <span class="toc-text">PARTITIONS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PARTITION-KEYS"><span class="toc-number">23.</span> <span class="toc-text">PARTITION_KEYS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PARTITION-KEY-VALS"><span class="toc-number">24.</span> <span class="toc-text">PARTITION_KEY_VALS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PARTITION-PARAMS"><span class="toc-number">25.</span> <span class="toc-text">PARTITION_PARAMS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PART-COL-PRIVS"><span class="toc-number">26.</span> <span class="toc-text">PART_COL_PRIVS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PART-COL-STATS"><span class="toc-number">27.</span> <span class="toc-text">PART_COL_STATS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PART-PRIVS"><span class="toc-number">28.</span> <span class="toc-text">PART_PRIVS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ROLES"><span class="toc-number">29.</span> <span class="toc-text">ROLES</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ROLE-MAP"><span class="toc-number">30.</span> <span class="toc-text">ROLE_MAP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SDS"><span class="toc-number">31.</span> <span class="toc-text">SDS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SD-PARAMS"><span class="toc-number">32.</span> <span class="toc-text">SD_PARAMS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SEQUENCE-TABLE"><span class="toc-number">33.</span> <span class="toc-text">SEQUENCE_TABLE</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SERDES"><span class="toc-number">34.</span> <span class="toc-text">SERDES</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SERDE-PARAMS"><span class="toc-number">35.</span> <span class="toc-text">SERDE_PARAMS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SKEWED-COL-NAMES"><span class="toc-number">36.</span> <span class="toc-text">SKEWED_COL_NAMES</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SKEWED-COL-VALUE-LOC-MAP"><span class="toc-number">37.</span> <span class="toc-text">SKEWED_COL_VALUE_LOC_MAP</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SKEWED-STRING-LIST"><span class="toc-number">38.</span> <span class="toc-text">SKEWED_STRING_LIST</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SKEWED-STRING-LIST-VALUES"><span class="toc-number">39.</span> <span class="toc-text">SKEWED_STRING_LIST_VALUES</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SKEWED-VALUES"><span class="toc-number">40.</span> <span class="toc-text">SKEWED_VALUES</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SORT-COLS"><span class="toc-number">41.</span> <span class="toc-text">SORT_COLS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TABLE-PARAMS"><span class="toc-number">42.</span> <span class="toc-text">TABLE_PARAMS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TAB-COL-STATS"><span class="toc-number">43.</span> <span class="toc-text">TAB_COL_STATS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TBLS"><span class="toc-number">44.</span> <span class="toc-text">TBLS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TBL-COL-PRIVS"><span class="toc-number">45.</span> <span class="toc-text">TBL_COL_PRIVS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TBL-PRIVS"><span class="toc-number">46.</span> <span class="toc-text">TBL_PRIVS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TXNS"><span class="toc-number">47.</span> <span class="toc-text">TXNS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TXN-COMPONENTS"><span class="toc-number">48.</span> <span class="toc-text">TXN_COMPONENTS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T-HDFS"><span class="toc-number">49.</span> <span class="toc-text">T_HDFS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T-HIVE"><span class="toc-number">50.</span> <span class="toc-text">T_HIVE</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#T-OWNER"><span class="toc-number">51.</span> <span class="toc-text">T_OWNER</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#VERSION"><span class="toc-number">52.</span> <span class="toc-text">VERSION</span></a></li></ol>
         </div>
     </div>
-  </div>
-  <footer class="blog-footer">
-  <div class="container">
-    <div id="footer-info" class="inner">
-      &copy; 2018 BIGrey<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    
+  </aside>
+</main>
+
+
+
+  <footer>
+  <div class="copyright">
+    <div>
+      &copy; 2018 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a>&nbsp
+    </div>
+    <div>
+      Theme by <a href="https://github.com/lewis-geek/hexo-theme-Aath" target="_blank">Aath</a>
     </div>
   </div>
 </footer>
 
+
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="/lib/in-view.min.js"></script>
+<script src="/lib/lodash.min.js"></script>
+<script>
+  var isDown = true
+  var oldY = 0
+  inView.offset(50)
+
+  document.body.addEventListener('touchstart', function(){});
   
+  window.addEventListener('scroll', _.throttle(e => {
+    var currentY = window.scrollY
+    if((oldY - currentY) < 0) {
+      isDown = true
+    } else {
+      isDown = false
+    }
+    oldY = currentY
+  }, 250))
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha384-8gBf6Y4YYq7Jx97PIqmTwLPin4hxIzQw5aDmUg/DDhul9fFpbbLcLh3nTIIDJKhx" crossorigin="anonymous"></script>
+  $("article img").each(function() {
+      var strA = "<a data-fancybox='gallery' href='" + this.src + "'></a>";
+      $(this).wrapAll(strA);
+  });
 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+  $('.toc-link').each(function() {
+      var href = $(this).attr("href");
+      
+      inView(href).on('exit', () => {
+        if (isDown) {
+          handleActive(href)
+        }
+      })
 
+      inView(href).on('enter', () => {
+        if (!isDown) {
+          handleActive(href)
+        }
+      })
 
+      this.onclick = function(e) {
+        var pos = $(href).offset().top - 10;
+        $("html,body").animate({scrollTop: pos}, 300);
+        setTimeout(() => {
+          handleActive(href)
+        }, 350)
+        return false
+      }
+  })
 
-<script src="/js/script.js"></script>
+  function handleActive(href) {
+    document.querySelectorAll('.toc-link').forEach(elm => {
+      elm.classList.remove('active')
+    })
+    document.querySelector(".toc [href='"+ href +"']").classList.add('active')
+  }
+</script>
+<script src="/lib/jquery.fancybox.min.js"></script>
+
 
 </body>
 </html>

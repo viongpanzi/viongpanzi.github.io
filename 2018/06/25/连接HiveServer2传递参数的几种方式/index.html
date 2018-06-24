@@ -67,10 +67,9 @@
 <p>只要URL、用户名和密码正确的话，通过上面的示例代码，就可以连接到HS2执行操作了。但是往往这样还不够，如果我们想通过传递一些Hive的配置信息，那该怎么办呢？</p>
 <h4 id="二、传递参数"><a href="#二、传递参数" class="headerlink" title="二、传递参数"></a>二、传递参数</h4><p>可以通过如下的几种方式来传递参数：</p>
 <ul>
-<li>类HiveClient方式<br>使用过Hive客户端的用户都知道，如果我们想改变Hive的某一项客户端配置的话，可以通过<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">set hive_conf_key=hive_conf_value;</div></pre></td></tr></table></figure>
+<li>类HiveClient方式<br>使用过Hive客户端的用户都知道，如果我们想改变Hive的某一项客户端配置的话，可以通过set hive_conf_key=hive_conf_value;的方式来修改。由此，很自然的我们会想到在获得了一个JDBC的连接后，我们执行一下上面的语句不就可以了。示例代码如下：<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">// 我们执行一些复杂的sql的时候，往往需要制定一个队列，假设队列的名字为&quot;root.hive-server2&quot;</div><div class="line">stat.execute(&quot;set mapreduce.job.queuename=root.hive-server2&quot;);</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>的方式来修改。由此，很自然的我们会想到在获得了一个JDBC的连接后，我们执行一下上面的语句不就可以了。示例代码如下：<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">// 我们执行一些复杂的sql的时候，往往需要制定一个队列，假设队列的名字为&quot;root.hive-server2&quot;</div><div class="line">stat.execute(&quot;set mapreduce.job.queuename=root.hive-server2&quot;);</div></pre></td></tr></table></figure></p>
 <p><strong>NOTE</strong>：需要注意的是，execute中的set语句不能包含分号（不能是set mapreduce.job.queuename=root.hive-server2;），这是和客户端的区别，否则不生效。</p>
 <ul>
 <li>在JDBC URL中传递<br>对jdbc比较熟悉的用户，都知道可以在jdbc的连接中传递一些参数，hive也一样支持。对于上面的需求，可以把充分利用JDBC_URL。示例代码如下：<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">...</div><div class="line">String JDBC_URL=&quot;jdbc:hive2://localhost:10000/default?mapreduce.job.queuename=root.hive-server2;hive.cli.print.header=false&quot;;</div><div class="line">Connection conn = DriverManager.getConnection(JDBC_URL, info);</div><div class="line">...</div></pre></td></tr></table></figure>
@@ -79,11 +78,11 @@
 <p><strong>NOTE</strong>：细心的读者肯定注意到了这里的JDBC_URL和普通的jdbc传递参数不一样的地方，那就是这里是通过使用分号来分割多个hive的配置变量的，而不是使用’&amp;’。<br><strong>NOTE</strong>：另外，这里传递hive配置和hive变量还是有区别的，Hive是通过’#’来分割Hive配置列表和Hive变量列表的。</p>
 <blockquote>
 <p>// 源码HiveConnection.java有说明<br>// JDBC URL: jdbc:hive2://<host>:<port>/dbName;sess_var_list?hive_conf_list#hive_var_list<br>// each list: <key1>=<val1>;<key2>=<val2> and so on</val2></key2></val1></key1></port></host></p>
+</blockquote>
 <ul>
 <li>通过连接属性配置<br>如果需要传递的配置数目比较多，使用上面的方法，难免有点冗余和负杂，URL将会变得特别长。其实，我们可以像配置user和password一样来传递配置。区别于user和password配置方式的地方是，必须明确指出配置的是一个hive_conf还是hive_var，否则配置不会生效。示例代码如下：<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Class.forName(&quot;org.apache.hive.jdbc.HiveDriver&quot;);</div><div class="line">Properties info = new Properties();</div><div class="line">info.setProperty(&quot;user&quot;, &quot;user_name&quot;);</div><div class="line">info.setProperty(&quot;password&quot;, &quot;passwd&quot;);</div><div class="line">// 这里传递了一个队列的hive_conf</div><div class="line">info.setProperty(&quot;hiveconf:mapreduce.job.queuename&quot;, &quot;root.hive-server2&quot;);</div><div class="line">String JDBC_URL=&quot;jdbc:hive2://localhost:10000/default&quot;;</div><div class="line">Connection conn = DriverManager.getConnection(JDBC_URL, info);</div><div class="line">HiveStatement stat = (HiveStatement) conn.createStatement();</div><div class="line">...</div></pre></td></tr></table></figure>
 </li>
 </ul>
-</blockquote>
 <p>好了，这就是我想介绍的几种连接HiveServer2时传递参数的方式，希望对大家有所帮助！谢谢！</p>
 <p>原文来自本人<a href="https://www.jianshu.com/p/5017e5075bfd" target="_blank" rel="external">简书的博客</a></p>
 

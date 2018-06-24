@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang=zh-Hans>
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="description" content="BIGrey 在 Github 上的个人博客">
+  <meta name="keywords" content="undefined">
+  
+    <link rel="icon" href="/favicon.ico">
+  
+    
+  <title>连接HiveServer2传递参数的几种方式 | BIGrey&#39;s Blog</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/lib/jquery.fancybox.min.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <header>
+  <div class="header-container">
+    <a class='logo' href="/">
+      <span>BIGrey's Blog</span>
+    </a>
+    <ul class="right-header">
+      
+        <li class="nav-item">
+          
+            <a href="/" class="item-link">首页</a>
+          
+        </li>
+      
+        <li class="nav-item">
+          
+            <a href="/about" class="item-link">关于</a>
+          
+        </li>
+      
+        <li class="nav-item">
+          
+            <a href="/archives" class="item-link">归档</a>
+          
+        </li>
+      
+        <li class="nav-item">
+          
+            <a href="/tags" class="item-link">标签</a>
+          
+        </li>
+      
+    </ul>
+  </div>
+</header>
+
+  <main id='post'>
+  <div class="content">
+    <article>
+        <section class="content markdown-body">
+          <h1>连接HiveServer2传递参数的几种方式</h1>
+          <div class='post-meta'>
+            <i class="fa fa-calendar" aria-hidden="true"></i> <time>2018/06/25</time>
+            
+            
+          </div>
+          <p>HiveServer2（以下简称：HS2）是Hive提供的一种jdbc服务，用户可以通过Hive自带的Beeline连接，也可以使用Java、Python或者PHP等通过jdbc的方式连接。下面以Java连接HiveServer2为例来介绍几种向Hive传递参数的方法。</p>
+<h4 id="一、如何连接HS2"><a href="#一、如何连接HS2" class="headerlink" title="一、如何连接HS2"></a>一、如何连接HS2</h4><p>连接到HS2，一般需要提供HS2的地址、端口号、连接的Hive库、用户名和密码这几个必选项，示例代码如下：<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Class.forName(&quot;org.apache.hive.jdbc.HiveDriver&quot;);</div><div class="line">Properties info = new Properties();</div><div class="line">info.setProperty(&quot;user&quot;, &quot;user_name&quot;);</div><div class="line">info.setProperty(&quot;password&quot;, &quot;passwd&quot;);</div><div class="line">String JDBC_URL=&quot;jdbc:hive2://localhost:10000/default&quot;;</div><div class="line">Connection conn = DriverManager.getConnection(JDBC_URL, info);</div><div class="line">HiveStatement stat = (HiveStatement) conn.createStatement();</div><div class="line">...</div></pre></td></tr></table></figure></p>
+<p>只要URL、用户名和密码正确的话，通过上面的示例代码，就可以连接到HS2执行操作了。但是往往这样还不够，如果我们想通过传递一些Hive的配置信息，那该怎么办呢？</p>
+<h4 id="二、传递参数"><a href="#二、传递参数" class="headerlink" title="二、传递参数"></a>二、传递参数</h4><p>可以通过如下的几种方式来传递参数：</p>
+<ul>
+<li>类HiveClient方式<br>使用过Hive客户端的用户都知道，如果我们想改变Hive的某一项客户端配置的话，可以通过<figure class="highlight plain"><figcaption><span>hive_conf_key=hive_conf_value;```的方式来修改。由此，很自然的我们会想到在获得了一个JDBC的连接后，我们执行一下上面的语句不就可以了。示例代码如下：</span></figcaption><table><tr><td class="code"><pre><div class="line">```</div><div class="line">// 我们执行一些复杂的sql的时候，往往需要制定一个队列，假设队列的名字为&quot;root.hive-server2&quot;</div><div class="line">stat.execute(&quot;set mapreduce.job.queuename=root.hive-server2&quot;);</div></pre></td></tr></table></figure></li>
+</ul>
+<p><strong>NOTE</strong>：需要注意的是，execute中的set语句不能包含分号（不能是<figure class="highlight plain"><figcaption><span>mapreduce.job.queuename=root.hive-server2;```），这是和客户端的区别，否则不生效。</span></figcaption><table><tr><td class="code"><pre><div class="line">* 在JDBC URL中传递</div><div class="line">对jdbc比较熟悉的用户，都知道可以在jdbc的连接中传递一些参数，hive也一样支持。对于上面的需求，可以把充分利用JDBC_URL。示例代码如下：</div></pre></td></tr></table></figure></p>
+<p>…<br>String JDBC_URL=”jdbc:hive2://localhost:10000/default?mapreduce.job.queuename=root.hive-server2;hive.cli.print.header=false”;<br>Connection conn = DriverManager.getConnection(JDBC_URL, info);<br>…<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">**NOTE**：细心的读者肯定注意到了这里的JDBC_URL和普通的jdbc传递参数不一样的地方，那就是这里是通过使用分号来分割多个hive的配置变量的，而不是使用&apos;&amp;&apos;。</div><div class="line">**NOTE**：另外，这里传递hive配置和hive变量还是有区别的，Hive是通过&apos;#&apos;来分割Hive配置列表和Hive变量列表的。</div><div class="line">&gt; // 源码HiveConnection.java有说明</div><div class="line">&gt; // JDBC URL: jdbc:hive2://&lt;host&gt;:&lt;port&gt;/dbName;sess_var_list?hive_conf_list#hive_var_list</div><div class="line">&gt; // each list: &lt;key1&gt;=&lt;val1&gt;;&lt;key2&gt;=&lt;val2&gt; and so on</div><div class="line">* 通过连接属性配置</div><div class="line">如果需要传递的配置数目比较多，使用上面的方法，难免有点冗余和负杂，URL将会变得特别长。其实，我们可以像配置user和password一样来传递配置。区别于user和password配置方式的地方是，必须明确指出配置的是一个hive_conf还是hive_var，否则配置不会生效。示例代码如下：</div></pre></td></tr></table></figure></p>
+<p>Class.forName(“org.apache.hive.jdbc.HiveDriver”);<br>Properties info = new Properties();<br>info.setProperty(“user”, “user_name”);<br>info.setProperty(“password”, “passwd”);<br>// 这里传递了一个队列的hive_conf<br>info.setProperty(“hiveconf:mapreduce.job.queuename”, “root.hive-server2”);<br>String JDBC_URL=”jdbc:hive2://localhost:10000/default”;<br>Connection conn = DriverManager.getConnection(JDBC_URL, info);<br>HiveStatement stat = (HiveStatement) conn.createStatement();<br>…<br>```<br>好了，这就是我想介绍的几种连接HiveServer2时传递参数的方式，希望对大家有所帮助！谢谢！</p>
+
+        </section>
+    </article>
+    
+        
+  </div>
+  <aside>
+    
+    <div class="toc-container">
+        <h1>目录</h1>
+        <div class="content">
+            <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#一、如何连接HS2"><span class="toc-number">1.</span> <span class="toc-text">一、如何连接HS2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二、传递参数"><span class="toc-number">2.</span> <span class="toc-text">二、传递参数</span></a></li></ol>
+        </div>
+    </div>
+    
+  </aside>
+</main>
+
+
+
+  <footer>
+  <div class="copyright">
+    <div>
+      &copy; 2018 | Powered by <a href="https://hexo.io" target="_blank">Hexo</a>&nbsp
+    </div>
+    <div>
+      Theme by <a href="https://github.com/lewis-geek/hexo-theme-Aath" target="_blank">Aath</a>
+    </div>
+  </div>
+</footer>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="/lib/in-view.min.js"></script>
+<script src="/lib/lodash.min.js"></script>
+<script>
+  var isDown = true
+  var oldY = 0
+  inView.offset(50)
+
+  document.body.addEventListener('touchstart', function(){});
+  
+  window.addEventListener('scroll', _.throttle(e => {
+    var currentY = window.scrollY
+    if((oldY - currentY) < 0) {
+      isDown = true
+    } else {
+      isDown = false
+    }
+    oldY = currentY
+  }, 250))
+
+  $("article img").each(function() {
+      var strA = "<a data-fancybox='gallery' href='" + this.src + "'></a>";
+      $(this).wrapAll(strA);
+  });
+
+  $('.toc-link').each(function() {
+      var href = $(this).attr("href");
+      
+      inView(href).on('exit', () => {
+        if (isDown) {
+          handleActive(href)
+        }
+      })
+
+      inView(href).on('enter', () => {
+        if (!isDown) {
+          handleActive(href)
+        }
+      })
+
+      this.onclick = function(e) {
+        var pos = $(href).offset().top - 10;
+        $("html,body").animate({scrollTop: pos}, 300);
+        setTimeout(() => {
+          handleActive(href)
+        }, 350)
+        return false
+      }
+  })
+
+  function handleActive(href) {
+    document.querySelectorAll('.toc-link').forEach(elm => {
+      elm.classList.remove('active')
+    })
+    document.querySelector(".toc [href='"+ href +"']").classList.add('active')
+  }
+</script>
+<script src="/lib/jquery.fancybox.min.js"></script>
+
+
+</body>
+</html>

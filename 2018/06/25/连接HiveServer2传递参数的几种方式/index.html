@@ -61,6 +61,14 @@
             <i class="fa fa-calendar" aria-hidden="true"></i> <time>2018/06/25</time>
             
             
+              | 
+                  <i class="fa fa-tag" aria-hidden="true"></i>
+                
+               
+  <a href="/tags/#Hive" class='tag'>Hive</a>
+
+
+            
           </div>
           <p>HiveServer2（以下简称：HS2）是Hive提供的一种jdbc服务，用户可以通过Hive自带的Beeline连接，也可以使用Java、Python或者PHP等通过jdbc的方式连接。下面以Java连接HiveServer2为例来介绍几种向Hive传递参数的方法。</p>
 <h4 id="一、如何连接HS2"><a href="#一、如何连接HS2" class="headerlink" title="一、如何连接HS2"></a>一、如何连接HS2</h4><p>连接到HS2，一般需要提供HS2的地址、端口号、连接的Hive库、用户名和密码这几个必选项，示例代码如下：<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Class.forName(&quot;org.apache.hive.jdbc.HiveDriver&quot;);</div><div class="line">Properties info = new Properties();</div><div class="line">info.setProperty(&quot;user&quot;, &quot;user_name&quot;);</div><div class="line">info.setProperty(&quot;password&quot;, &quot;passwd&quot;);</div><div class="line">String JDBC_URL=&quot;jdbc:hive2://localhost:10000/default&quot;;</div><div class="line">Connection conn = DriverManager.getConnection(JDBC_URL, info);</div><div class="line">HiveStatement stat = (HiveStatement) conn.createStatement();</div><div class="line">...</div></pre></td></tr></table></figure></p>

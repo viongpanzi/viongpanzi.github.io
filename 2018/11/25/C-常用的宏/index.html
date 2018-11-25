@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="C++,宏," />
 
 
 
@@ -79,15 +79,19 @@
 
 
 
-<meta name="description" content="优雅编程">
-<meta property="og:type" content="website">
-<meta property="og:title" content="BIGrey's Blog">
-<meta property="og:url" content="http://viongpanzi.github.io/tags/Hadoop/index.html">
+<meta name="description" content="可变参数列表VA_ARGS用来表示可变参数列表#define debug(…) printf(__VA_ARGS__)
+宏里面预设的变量ANSI C标准中有几个重用标准预定义宏：LINE：在源代码中插入当前源代码行号；FILE：在源文件中插入当前源文件名；DATE：在源文件中插入当前的编译日期TIME：在源文件中插入当前编译时间；STDC：当要求程序严格遵循ANSI C标准时该标识被赋值为1；__">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++常用的宏">
+<meta property="og:url" content="http://viongpanzi.github.io/2018/11/25/C-常用的宏/index.html">
 <meta property="og:site_name" content="BIGrey's Blog">
-<meta property="og:description" content="优雅编程">
+<meta property="og:description" content="可变参数列表VA_ARGS用来表示可变参数列表#define debug(…) printf(__VA_ARGS__)
+宏里面预设的变量ANSI C标准中有几个重用标准预定义宏：LINE：在源代码中插入当前源代码行号；FILE：在源文件中插入当前源文件名；DATE：在源文件中插入当前的编译日期TIME：在源文件中插入当前编译时间；STDC：当要求程序严格遵循ANSI C标准时该标识被赋值为1；__">
+<meta property="og:updated_time" content="2018-11-25T04:13:54.474Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="BIGrey's Blog">
-<meta name="twitter:description" content="优雅编程">
+<meta name="twitter:title" content="C++常用的宏">
+<meta name="twitter:description" content="可变参数列表VA_ARGS用来表示可变参数列表#define debug(…) printf(__VA_ARGS__)
+宏里面预设的变量ANSI C标准中有几个重用标准预定义宏：LINE：在源代码中插入当前源代码行号；FILE：在源文件中插入当前源文件名；DATE：在源文件中插入当前的编译日期TIME：在源文件中插入当前编译时间；STDC：当要求程序严格遵循ANSI C标准时该标识被赋值为1；__">
 
 
 
@@ -117,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://viongpanzi.github.io/tags/Hadoop/"/>
+  <link rel="canonical" href="http://viongpanzi.github.io/2018/11/25/C-常用的宏/"/>
 
 
 
 
 
-  <title>标签: Hadoop | BIGrey's Blog</title>
+  <title>C++常用的宏 | BIGrey's Blog</title>
   
 
 
@@ -142,7 +146,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -236,54 +240,162 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>Hadoop<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://viongpanzi.github.io/2018/11/25/C-常用的宏/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="BIGrey">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1529868714996&di=c6dc1a222f9871ca9c6380a15be81df4&imgtype=0&src=http%3A%2F%2Fimg.bitscn.com%2Fupimg%2Fallimg%2Fc141119%2F1416409304C1Z-104029.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BIGrey's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/08/12/Hadoop-Metric介绍/" itemprop="url">
-              
-                <span itemprop="name">Hadoop Metric介绍</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">C++常用的宏</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-08-12T00:00:34+08:00"
-              content="2018-08-12" >
-          08-12
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-25T12:13:54+08:00">
+                2018-11-25
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/11/25/C-常用的宏/" class="leancloud_visitors" data-flag-title="C++常用的宏">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="可变参数列表"><a href="#可变参数列表" class="headerlink" title="可变参数列表"></a>可变参数列表</h3><p><strong>VA_ARGS</strong>用来表示可变参数列表<br><figure class="highlight cpp"><table><tr><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> debug(…) printf(__VA_ARGS__)</span></div></pre></td></tr></table></figure></p>
+<h3 id="宏里面预设的变量"><a href="#宏里面预设的变量" class="headerlink" title="宏里面预设的变量"></a>宏里面预设的变量</h3><p>ANSI C标准中有几个重用标准预定义宏：<br><strong>LINE</strong>：在源代码中插入当前源代码行号；<br><strong>FILE</strong>：在源文件中插入当前源文件名；<br><strong>DATE</strong>：在源文件中插入当前的编译日期<br><strong>TIME</strong>：在源文件中插入当前编译时间；<br><strong>STDC</strong>：当要求程序严格遵循ANSI C标准时该标识被赋值为1；<br>__cplusplus：当编写C++程序时该标识符被定义</p>
+<h3 id="宏里面的字符串操作"><a href="#宏里面的字符串操作" class="headerlink" title="宏里面的字符串操作"></a>宏里面的字符串操作</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">## : 拼接字符串</div><div class="line"># : 置于变量前面，给变量加上双引号</div><div class="line">#@ : 置于变量前面，给变量加上单引号</div></pre></td></tr></table></figure>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag"># C++</a>
+          
+            <a href="/tags/宏/" rel="tag"># 宏</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/18/CentOS-安装ClickHouse/" rel="next" title="CentOS 安装ClickHouse">
+                <i class="fa fa-chevron-left"></i> CentOS 安装ClickHouse
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -291,6 +403,15 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zODg4OC8xNTQxNg=="></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -311,8 +432,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -385,6 +515,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#可变参数列表"><span class="nav-number">1.</span> <span class="nav-text">可变参数列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#宏里面预设的变量"><span class="nav-number">2.</span> <span class="nav-text">宏里面预设的变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#宏里面的字符串操作"><span class="nav-number">3.</span> <span class="nav-text">宏里面的字符串操作</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -518,6 +664,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -546,6 +696,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 

@@ -251,6 +251,139 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://viongpanzi.github.io/2018/11/25/C-常用的宏/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="BIGrey">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1529868714996&di=c6dc1a222f9871ca9c6380a15be81df4&imgtype=0&src=http%3A%2F%2Fimg.bitscn.com%2Fupimg%2Fallimg%2Fc141119%2F1416409304C1Z-104029.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BIGrey's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/25/C-常用的宏/" itemprop="url">C++常用的宏</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-11-25T12:13:54+08:00">
+                2018-11-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/11/25/C-常用的宏/" class="leancloud_visitors" data-flag-title="C++常用的宏">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="可变参数列表"><a href="#可变参数列表" class="headerlink" title="可变参数列表"></a>可变参数列表</h3><p><strong>VA_ARGS</strong>用来表示可变参数列表<br><figure class="highlight cpp"><table><tr><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> debug(…) printf(__VA_ARGS__)</span></div></pre></td></tr></table></figure></p>
+<h3 id="宏里面预设的变量"><a href="#宏里面预设的变量" class="headerlink" title="宏里面预设的变量"></a>宏里面预设的变量</h3><p>ANSI C标准中有几个重用标准预定义宏：<br><strong>LINE</strong>：在源代码中插入当前源代码行号；<br><strong>FILE</strong>：在源文件中插入当前源文件名；<br><strong>DATE</strong>：在源文件中插入当前的编译日期<br><strong>TIME</strong>：在源文件中插入当前编译时间；<br><strong>STDC</strong>：当要求程序严格遵循ANSI C标准时该标识被赋值为1；<br>__cplusplus：当编写C++程序时该标识符被定义</p>
+<h3 id="宏里面的字符串操作"><a href="#宏里面的字符串操作" class="headerlink" title="宏里面的字符串操作"></a>宏里面的字符串操作</h3><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">## : 拼接字符串</div><div class="line"># : 置于变量前面，给变量加上双引号</div><div class="line">#@ : 置于变量前面，给变量加上单引号</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://viongpanzi.github.io/2018/11/18/CentOS-安装ClickHouse/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -333,11 +466,11 @@
       
         
           
-            <p>ClickHouse是一款列式分布式式数据库，因为在CentOS上的安装目前都是rpm的方式，对于我们可能需要自定义一些功能，并做一些自定义规范的需求，比较适合自己进行打包部署。</p>
+            <p>ClickHouse是一款列式分布式数据库，目前在CentOS上都是以rpm来安装的，因为我们可能需要自定义一些功能，并做一些自定义的部署规范需求，比较适合自己进行打包部署。</p>
 <h3 id="环境要求"><a href="#环境要求" class="headerlink" title="环境要求"></a>环境要求</h3><ul>
 <li>CentOS 7</li>
 <li>gcc-7+、g++-7+</li>
-<li>cmake3</li>
+<li>cmake3、ccache</li>
 <li>ClickHouse 18+</li>
 </ul>
 <h3 id="首先安装gcc"><a href="#首先安装gcc" class="headerlink" title="首先安装gcc"></a>首先安装gcc</h3><p>这里采用的是从源码包安装的方式，从<a href="http://mirrors.ustc.edu.cn/gnu/gcc/gcc-7.3.0" target="_blank" rel="external">http://mirrors.ustc.edu.cn/gnu/gcc/gcc-7.3.0</a>下载对应的tar.gz包（gcc-7.3.0.tar.gz）。</p>
@@ -353,7 +486,7 @@
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">~/gcc7/bin/gcc -v</div></pre></td></tr></table></figure>
 <p>一般为了方便使用，可以建立软连接到/usr/bin,这样可以直接在终端里面使用gcc-7和g++-7了。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sudo ln -s ~/gcc7/bin/gcc /usr/bin/gcc-7</div><div class="line">sudo ln -s ~/gcc7/bin/g++ /usr/bin/g++-7</div></pre></td></tr></table></figure>
-<h3 id="安装cmake3"><a href="#安装cmake3" class="headerlink" title="安装cmake3"></a>安装cmake3</h3><p>编译ClickHouse需要cmake3,直接sudo yum install cmake3即可</p>
+<h3 id="安装cmake3和ccache"><a href="#安装cmake3和ccache" class="headerlink" title="安装cmake3和ccache"></a>安装cmake3和ccache</h3><p>编译ClickHouse需要cmake3,直接sudo yum install cmake3和sudo yum install ccache即可</p>
 <h3 id="编译ClickHouse"><a href="#编译ClickHouse" class="headerlink" title="编译ClickHouse"></a>编译ClickHouse</h3><p>首先clone代码到用户目录（~）下，并更新子模块，拉取子模块的代码，主要是一些依赖的库。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">git clone  https://github.com/yandex/ClickHouse.git</div><div class="line">cd ClickHouse</div><div class="line">git submodule update --init --recursive</div></pre></td></tr></table></figure>
 <p>配置编译器为gcc7:</p>
@@ -4257,143 +4390,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://viongpanzi.github.io/2017/04/04/Volatile-in-Java/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="BIGrey">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1529868714996&di=c6dc1a222f9871ca9c6380a15be81df4&imgtype=0&src=http%3A%2F%2Fimg.bitscn.com%2Fupimg%2Fallimg%2Fc141119%2F1416409304C1Z-104029.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="BIGrey's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/04/04/Volatile-in-Java/" itemprop="url">Volatile in Java</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-04T22:58:49+08:00">
-                2017-04-04
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/04/04/Volatile-in-Java/" class="leancloud_visitors" data-flag-title="Volatile in Java">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Java语言两种内在的同步机制的一种。相比于<strong>同步块（或方法）</strong>，<strong>volatile变量</strong>的使用更简单，但是也更容易出错。</p>
-<h3 id="正确使用Volatile的条件"><a href="#正确使用Volatile的条件" class="headerlink" title="正确使用Volatile的条件"></a>正确使用Volatile的条件</h3><ol>
-<li>值得更新不依赖于当前值，比如自增操作</li>
-<li>该变量不包含在其他的变量的不变式中，比如start&lt;end</li>
-</ol>
-<h3 id="使用Volatile的优势"><a href="#使用Volatile的优势" class="headerlink" title="使用Volatile的优势"></a>使用Volatile的优势</h3><p>不会造成线程阻塞，在读操作大于写操作时性能更优。</p>
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://www.ibm.com/developerworks/cn/java/j-jtp06197.html" target="_blank" rel="external">Java 理论与实践: 正确使用 Volatile 变量</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -4448,7 +4444,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -4461,7 +4457,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>

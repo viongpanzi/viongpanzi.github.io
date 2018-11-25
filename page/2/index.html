@@ -251,6 +251,143 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://viongpanzi.github.io/2017/04/04/Volatile-in-Java/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="BIGrey">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1529868714996&di=c6dc1a222f9871ca9c6380a15be81df4&imgtype=0&src=http%3A%2F%2Fimg.bitscn.com%2Fupimg%2Fallimg%2Fc141119%2F1416409304C1Z-104029.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="BIGrey's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/04/04/Volatile-in-Java/" itemprop="url">Volatile in Java</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-04T22:58:49+08:00">
+                2017-04-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/04/04/Volatile-in-Java/" class="leancloud_visitors" data-flag-title="Volatile in Java">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Java语言两种内在的同步机制的一种。相比于<strong>同步块（或方法）</strong>，<strong>volatile变量</strong>的使用更简单，但是也更容易出错。</p>
+<h3 id="正确使用Volatile的条件"><a href="#正确使用Volatile的条件" class="headerlink" title="正确使用Volatile的条件"></a>正确使用Volatile的条件</h3><ol>
+<li>值得更新不依赖于当前值，比如自增操作</li>
+<li>该变量不包含在其他的变量的不变式中，比如start&lt;end</li>
+</ol>
+<h3 id="使用Volatile的优势"><a href="#使用Volatile的优势" class="headerlink" title="使用Volatile的优势"></a>使用Volatile的优势</h3><p>不会造成线程阻塞，在读操作大于写操作时性能更优。</p>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://www.ibm.com/developerworks/cn/java/j-jtp06197.html" target="_blank" rel="external">Java 理论与实践: 正确使用 Volatile 变量</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://viongpanzi.github.io/2017/03/14/Memo-of-Git/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -564,7 +701,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -577,7 +714,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>

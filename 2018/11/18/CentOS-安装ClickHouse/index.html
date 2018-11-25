@@ -79,37 +79,37 @@
 
 
 
-<meta name="description" content="ClickHouse是一款列式分布式式数据库，因为在CentOS上的安装目前都是rpm的方式，对于我们可能需要自定义一些功能，并做一些自定义规范的需求，比较适合自己进行打包部署。
+<meta name="description" content="ClickHouse是一款列式分布式数据库，目前在CentOS上都是以rpm来安装的，因为我们可能需要自定义一些功能，并做一些自定义的部署规范需求，比较适合自己进行打包部署。
 环境要求
 CentOS 7
 gcc-7+、g++-7+
-cmake3
+cmake3、ccache
 ClickHouse 18+
 
-首先安装gcc这里采用的是从源码包安装的方式，从http://mirrors.ustc.edu.cn/gnu/gcc/">
+首先安装gcc这里采用的是从源码包安装的方式，从http://mirrors.ustc.edu.cn/gnu">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CentOS 安装ClickHouse">
 <meta property="og:url" content="http://viongpanzi.github.io/2018/11/18/CentOS-安装ClickHouse/index.html">
 <meta property="og:site_name" content="BIGrey's Blog">
-<meta property="og:description" content="ClickHouse是一款列式分布式式数据库，因为在CentOS上的安装目前都是rpm的方式，对于我们可能需要自定义一些功能，并做一些自定义规范的需求，比较适合自己进行打包部署。
+<meta property="og:description" content="ClickHouse是一款列式分布式数据库，目前在CentOS上都是以rpm来安装的，因为我们可能需要自定义一些功能，并做一些自定义的部署规范需求，比较适合自己进行打包部署。
 环境要求
 CentOS 7
 gcc-7+、g++-7+
-cmake3
+cmake3、ccache
 ClickHouse 18+
 
-首先安装gcc这里采用的是从源码包安装的方式，从http://mirrors.ustc.edu.cn/gnu/gcc/">
-<meta property="og:updated_time" content="2018-11-18T04:37:42.854Z">
+首先安装gcc这里采用的是从源码包安装的方式，从http://mirrors.ustc.edu.cn/gnu">
+<meta property="og:updated_time" content="2018-11-18T14:38:05.531Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOS 安装ClickHouse">
-<meta name="twitter:description" content="ClickHouse是一款列式分布式式数据库，因为在CentOS上的安装目前都是rpm的方式，对于我们可能需要自定义一些功能，并做一些自定义规范的需求，比较适合自己进行打包部署。
+<meta name="twitter:description" content="ClickHouse是一款列式分布式数据库，目前在CentOS上都是以rpm来安装的，因为我们可能需要自定义一些功能，并做一些自定义的部署规范需求，比较适合自己进行打包部署。
 环境要求
 CentOS 7
 gcc-7+、g++-7+
-cmake3
+cmake3、ccache
 ClickHouse 18+
 
-首先安装gcc这里采用的是从源码包安装的方式，从http://mirrors.ustc.edu.cn/gnu/gcc/">
+首先安装gcc这里采用的是从源码包安装的方式，从http://mirrors.ustc.edu.cn/gnu">
 
 
 
@@ -350,11 +350,11 @@ ClickHouse 18+
       
 
       
-        <p>ClickHouse是一款列式分布式式数据库，因为在CentOS上的安装目前都是rpm的方式，对于我们可能需要自定义一些功能，并做一些自定义规范的需求，比较适合自己进行打包部署。</p>
+        <p>ClickHouse是一款列式分布式数据库，目前在CentOS上都是以rpm来安装的，因为我们可能需要自定义一些功能，并做一些自定义的部署规范需求，比较适合自己进行打包部署。</p>
 <h3 id="环境要求"><a href="#环境要求" class="headerlink" title="环境要求"></a>环境要求</h3><ul>
 <li>CentOS 7</li>
 <li>gcc-7+、g++-7+</li>
-<li>cmake3</li>
+<li>cmake3、ccache</li>
 <li>ClickHouse 18+</li>
 </ul>
 <h3 id="首先安装gcc"><a href="#首先安装gcc" class="headerlink" title="首先安装gcc"></a>首先安装gcc</h3><p>这里采用的是从源码包安装的方式，从<a href="http://mirrors.ustc.edu.cn/gnu/gcc/gcc-7.3.0" target="_blank" rel="external">http://mirrors.ustc.edu.cn/gnu/gcc/gcc-7.3.0</a>下载对应的tar.gz包（gcc-7.3.0.tar.gz）。</p>
@@ -370,7 +370,7 @@ ClickHouse 18+
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">~/gcc7/bin/gcc -v</div></pre></td></tr></table></figure>
 <p>一般为了方便使用，可以建立软连接到/usr/bin,这样可以直接在终端里面使用gcc-7和g++-7了。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">sudo ln -s ~/gcc7/bin/gcc /usr/bin/gcc-7</div><div class="line">sudo ln -s ~/gcc7/bin/g++ /usr/bin/g++-7</div></pre></td></tr></table></figure>
-<h3 id="安装cmake3"><a href="#安装cmake3" class="headerlink" title="安装cmake3"></a>安装cmake3</h3><p>编译ClickHouse需要cmake3,直接sudo yum install cmake3即可</p>
+<h3 id="安装cmake3和ccache"><a href="#安装cmake3和ccache" class="headerlink" title="安装cmake3和ccache"></a>安装cmake3和ccache</h3><p>编译ClickHouse需要cmake3,直接sudo yum install cmake3和sudo yum install ccache即可</p>
 <h3 id="编译ClickHouse"><a href="#编译ClickHouse" class="headerlink" title="编译ClickHouse"></a>编译ClickHouse</h3><p>首先clone代码到用户目录（~）下，并更新子模块，拉取子模块的代码，主要是一些依赖的库。</p>
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">git clone  https://github.com/yandex/ClickHouse.git</div><div class="line">cd ClickHouse</div><div class="line">git submodule update --init --recursive</div></pre></td></tr></table></figure>
 <p>配置编译器为gcc7:</p>
@@ -417,6 +417,10 @@ ClickHouse 18+
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/25/C-常用的宏/" rel="prev" title="C++常用的宏">
+                C++常用的宏 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -502,7 +506,7 @@ ClickHouse 18+
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -515,7 +519,7 @@ ClickHouse 18+
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -566,7 +570,7 @@ ClickHouse 18+
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#环境要求"><span class="nav-number">1.</span> <span class="nav-text">环境要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#首先安装gcc"><span class="nav-number">2.</span> <span class="nav-text">首先安装gcc</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装cmake3"><span class="nav-number">3.</span> <span class="nav-text">安装cmake3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编译ClickHouse"><span class="nav-number">4.</span> <span class="nav-text">编译ClickHouse</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#环境要求"><span class="nav-number">1.</span> <span class="nav-text">环境要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#首先安装gcc"><span class="nav-number">2.</span> <span class="nav-text">首先安装gcc</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装cmake3和ccache"><span class="nav-number">3.</span> <span class="nav-text">安装cmake3和ccache</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编译ClickHouse"><span class="nav-number">4.</span> <span class="nav-text">编译ClickHouse</span></a></li></ol></div>
             
 
           </div>

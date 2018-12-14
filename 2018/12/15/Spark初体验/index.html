@@ -108,23 +108,26 @@
 
 
 
-  <meta name="description" content="显示branch图[alias]lg1 = log --graph --abbrev-commit --decorate --format=format:&apos;%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%">
+  <meta name="description" content="Spark是大数据领域一款很流行的云计算系统。之前主要是做Hive，但是Hive相对于Spark来说就显得有点慢了，很多公司都渐渐的在使用Spark来替换Hive进行大数据分析。为了好好的学习一下Spark，准备把学习过程中的要点记录下来，也算是备忘一下。如果刚好可以帮助那些也想一窥Spark究竟的人，那就更好了。这是开篇，希望能够坚持下去。
+最开始，可以大概的浏览一下Spark的官网，这对于很多">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Memo of Git">
-<meta property="og:url" content="http://viongpanzi.github.io/2017/03/14/Memo-of-Git/index.html">
+<meta property="og:title" content="Spark初体验">
+<meta property="og:url" content="http://viongpanzi.github.io/2018/12/15/Spark初体验/index.html">
 <meta property="og:site_name" content="BIGrey's Blog">
-<meta property="og:description" content="显示branch图[alias]lg1 = log --graph --abbrev-commit --decorate --format=format:&apos;%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%">
-<meta property="og:updated_time" content="2017-03-13T17:30:58.000Z">
+<meta property="og:description" content="Spark是大数据领域一款很流行的云计算系统。之前主要是做Hive，但是Hive相对于Spark来说就显得有点慢了，很多公司都渐渐的在使用Spark来替换Hive进行大数据分析。为了好好的学习一下Spark，准备把学习过程中的要点记录下来，也算是备忘一下。如果刚好可以帮助那些也想一窥Spark究竟的人，那就更好了。这是开篇，希望能够坚持下去。
+最开始，可以大概的浏览一下Spark的官网，这对于很多">
+<meta property="og:updated_time" content="2018-12-14T16:27:22.294Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Memo of Git">
-<meta name="twitter:description" content="显示branch图[alias]lg1 = log --graph --abbrev-commit --decorate --format=format:&apos;%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%">
+<meta name="twitter:title" content="Spark初体验">
+<meta name="twitter:description" content="Spark是大数据领域一款很流行的云计算系统。之前主要是做Hive，但是Hive相对于Spark来说就显得有点慢了，很多公司都渐渐的在使用Spark来替换Hive进行大数据分析。为了好好的学习一下Spark，准备把学习过程中的要点记录下来，也算是备忘一下。如果刚好可以帮助那些也想一窥Spark究竟的人，那就更好了。这是开篇，希望能够坚持下去。
+最开始，可以大概的浏览一下Spark的官网，这对于很多">
 
 
 
 
 
 
-  <link rel="canonical" href="http://viongpanzi.github.io/2017/03/14/Memo-of-Git/"/>
+  <link rel="canonical" href="http://viongpanzi.github.io/2018/12/15/Spark初体验/"/>
 
 
 
@@ -134,7 +137,7 @@
   };
 </script>
 
-  <title>Memo of Git | BIGrey's Blog</title>
+  <title>Spark初体验 | BIGrey's Blog</title>
   
 
 
@@ -354,7 +357,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://viongpanzi.github.io/2017/03/14/Memo-of-Git/">
+    <link itemprop="mainEntityOfPage" href="http://viongpanzi.github.io/2018/12/15/Spark初体验/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="BIGrey">
@@ -371,7 +374,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Memo of Git
+          <h1 class="post-title" itemprop="name headline">Spark初体验
               
             
           </h1>
@@ -396,13 +399,9 @@
                 
               
 
-              <time title="创建时间：2017-03-14 01:27:22 / 修改时间：01:30:58" itemprop="dateCreated datePublished" datetime="2017-03-14T01:27:22+08:00">2017-03-14</time>
+              <time title="创建时间：2018-12-15 00:27:22" itemprop="dateCreated datePublished" datetime="2018-12-15T00:27:22+08:00">2018-12-15</time>
             
 
-            
-              
-
-              
             
           </span>
 
@@ -414,7 +413,7 @@
 
           
           
-             <span id="/2017/03/14/Memo-of-Git/" class="leancloud_visitors" data-flag-title="Memo of Git">
+             <span id="/2018/12/15/Spark初体验/" class="leancloud_visitors" data-flag-title="Spark初体验">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -445,9 +444,26 @@
       
 
       
-        <h2 id="显示branch图"><a href="#显示branch图" class="headerlink" title="显示branch图"></a>显示branch图</h2><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">[<span class="built_in">alias</span>]</div><div class="line">lg1 = <span class="built_in">log</span> --graph --abbrev-commit --decorate --format=format:<span class="string">'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'</span> --all</div><div class="line">lg2 = <span class="built_in">log</span> --graph --abbrev-commit --decorate --format=format:<span class="string">'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n'</span><span class="string">'          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)'</span> --all</div><div class="line">lg = !<span class="string">"git lg1"</span></div></pre></td></tr></table></figure>
-<p>或者<br><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">git <span class="built_in">log</span> --graph --abbrev-commit --decorate --date=relative --all</div></pre></td></tr></table></figure></p>
-<h2 id="推送本地分支到远端仓库"><a href="#推送本地分支到远端仓库" class="headerlink" title="推送本地分支到远端仓库"></a>推送本地分支到远端仓库</h2><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">git push origin local_branch:remote_branch</div></pre></td></tr></table></figure>
+        <p>Spark是大数据领域一款很流行的云计算系统。之前主要是做Hive，但是Hive相对于Spark来说就显得有点慢了，很多公司都渐渐的在使用Spark来替换Hive进行大数据分析。为了好好的学习一下Spark，准备把学习过程中的要点记录下来，也算是备忘一下。如果刚好可以帮助那些也想一窥Spark究竟的人，那就更好了。这是开篇，希望能够坚持下去。</p>
+<p>最开始，可以大概的浏览一下<a href="http://spark.apache.org/" target="_blank" rel="external">Spark的官网</a>，这对于很多的概念都会有一个很好的认识。Spark包含了几个比较重要的模块：Spark-SQL、Streaming、Mlib、GraphX等。我会从SQL开始，先重点学习这个。</p>
+<p>在阅读了官网的相关介绍后（如果感兴趣可以看原版的<a href="http://people.csail.mit.edu/matei/papers/2015/sigmod_spark_sql.pdf" target="_blank" rel="external">论文</a>），准备下载Spark的代码，好好研究一下。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">git clone https://github.com/apache/spark.git</div></pre></td></tr></table></figure>
+<p>一般看一个开源项目的代码，最好的入口当属于<code>README.md</code>文件了。</p>
+<h3 id="编译Spark"><a href="#编译Spark" class="headerlink" title="编译Spark"></a>编译Spark</h3><p>使用如下的命令编译Spark，由于项目比较大，将会是一个比较漫长等待的过程。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">build/mvn -DskipTests clean package</div></pre></td></tr></table></figure>
+<h3 id="启动交互式Shell"><a href="#启动交互式Shell" class="headerlink" title="启动交互式Shell"></a>启动交互式Shell</h3><p>编译好以后，使用如下的命令，可以启动一个交互式的Scala Shell。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">./bin/spark-shell</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Using Spark&apos;s default log4j profile: org/apache/spark/log4j-defaults.properties</div><div class="line">Setting default log level to &quot;WARN&quot;.</div><div class="line">To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).</div><div class="line">18/12/14 23:35:51 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable</div><div class="line">Spark context Web UI available at http://192.168.199.217:4040</div><div class="line">Spark context available as &apos;sc&apos; (master = local[*], app id = local-1544801753228).</div><div class="line">Spark session available as &apos;spark&apos;.</div><div class="line">Welcome to</div><div class="line">      ____              __</div><div class="line">     / __/__  ___ _____/ /__</div><div class="line">    _\ \/ _ \/ _ `/ __/  &apos;_/</div><div class="line">   /___/ .__/\_,_/_/ /_/\_\   version 2.2.3-SNAPSHOT</div><div class="line">      /_/</div><div class="line">         </div><div class="line">Using Scala version 2.11.8 (Java HotSpot(TM) 64-Bit Server VM, Java 1.8.0_73)</div><div class="line">Type in expressions to have them evaluated.</div><div class="line">Type :help for more information.</div><div class="line"></div><div class="line">scala&gt;</div></pre></td></tr></table></figure>
+<p>按照文档提示，执行如下的例子检查一下效果：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">scala&gt; sc.parallelize(1 to 1000).count()</div><div class="line">res0: Long = 1000</div></pre></td></tr></table></figure>
+<h3 id="使用Spark-SQL"><a href="#使用Spark-SQL" class="headerlink" title="使用Spark-SQL"></a>使用Spark-SQL</h3><p>当尝试登陆Spark-SQL环境的时候，却发现用不了，提示如下的信息：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">./bin/spark-sql                                   </div><div class="line">java.lang.ClassNotFoundException: org.apache.spark.sql.hive.thriftserver.SparkSQLCLIDriver</div><div class="line">        at java.net.URLClassLoader.findClass(URLClassLoader.java:381)</div><div class="line">        at java.lang.ClassLoader.loadClass(ClassLoader.java:424)</div><div class="line">        at java.lang.ClassLoader.loadClass(ClassLoader.java:357)</div><div class="line">        at java.lang.Class.forName0(Native Method)</div><div class="line">        at java.lang.Class.forName(Class.java:348)</div><div class="line">        at org.apache.spark.util.Utils$.classForName(Utils.scala:233)</div><div class="line">        at org.apache.spark.deploy.SparkSubmit$.org$apache$spark$deploy$SparkSubmit$$runMain(SparkSubmit.scala:732)</div><div class="line">        at org.apache.spark.deploy.SparkSubmit$.doRunMain$1(SparkSubmit.scala:180)</div><div class="line">        at org.apache.spark.deploy.SparkSubmit$.submit(SparkSubmit.scala:205)</div><div class="line">        at org.apache.spark.deploy.SparkSubmit$.main(SparkSubmit.scala:119)</div><div class="line">        at org.apache.spark.deploy.SparkSubmit.main(SparkSubmit.scala)</div><div class="line">Failed to load main class org.apache.spark.sql.hive.thriftserver.SparkSQLCLIDriver.</div><div class="line">You need to build Spark with -Phive and -Phive-thriftserver.</div></pre></td></tr></table></figure>
+<p>需要在编译的时候，把Hive的依赖打上。没办法，按照提示加上<code>-Phive -Phive-thriftserver</code>再次编译一下Spark，又是漫长的等待。</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">build/mvn -DskipTests clean package -Phive -Phive-thriftserver</div></pre></td></tr></table></figure>
+<p>编译好后，执行<code>./bin/spark-sql</code>就可以正常的进入spark-sql交互环境了，可以执行<code>show databases;</code>应该可以看到default库。</p>
+<p><strong>NOTE</strong></p>
+<p>因为此时使用的是本地内嵌的Hive环境，任何操作产生的Hive元数据会在本次会话退出后被清理掉！</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>总体来讲，整个过程还是比较简单的。下一篇将开始学习Spark-SQL模块的代码。</p>
 
       
     </div>
@@ -469,6 +485,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Spark/" rel="tag"># Spark</a>
+          
+        </div>
+      
 
       
       
@@ -478,8 +500,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/03/14/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2018/11/25/C-常用的宏/" rel="next" title="C++常用的宏">
+                <i class="fa fa-chevron-left"></i> C++常用的宏
               </a>
             
           </div>
@@ -487,10 +509,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/04/04/Volatile-in-Java/" rel="prev" title="Volatile in Java">
-                Volatile in Java <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -653,7 +671,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#显示branch图"><span class="nav-number">1.</span> <span class="nav-text">显示branch图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#推送本地分支到远端仓库"><span class="nav-number">2.</span> <span class="nav-text">推送本地分支到远端仓库</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#编译Spark"><span class="nav-number">1.</span> <span class="nav-text">编译Spark</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启动交互式Shell"><span class="nav-number">2.</span> <span class="nav-text">启动交互式Shell</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Spark-SQL"><span class="nav-number">3.</span> <span class="nav-text">使用Spark-SQL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
@@ -806,7 +824,7 @@
   
     <script type="text/javascript">
       window.livereOptions = {
-        refer: '2017/03/14/Memo-of-Git/'
+        refer: '2018/12/15/Spark初体验/'
       };
       (function(d, s) {
         var j, e = d.getElementsByTagName(s)[0];
